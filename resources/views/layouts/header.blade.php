@@ -4,7 +4,7 @@
         <div class="flex items-center gap-3 text-sm font-medium sm:gap-6">
             <a href="{{ route('index') }}" class="transition hover:text-cyan-300">Home</a>
             <a href="{{ route('aboutus') }}" class="transition hover:text-cyan-300">About</a>
-            {{-- <a href="{{ route('team') }}" class="transition hover:text-cyan-300">Team</a> --}}
+            <a href="{{ route('team') }}" class="transition hover:text-cyan-300">Team</a>
             <a href="{{ route('contracts') }}" class="transition hover:text-cyan-300">Contact</a>
             @auth
                 @if (auth()->user()->is_admin)

@@ -370,41 +370,41 @@ window.addEventListener('load', () => {
     /* ============================================
        5. CUSTOM CURSOR (desktop only)
     ============================================ */
-    if (!isMobile && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-        const cursor = document.createElement('div');
-        cursor.style.cssText = `
-            position: fixed; width: 24px; height: 24px; border-radius: 50%;
-            background: rgba(34, 211, 238, 0.4);
-            pointer-events: none; z-index: 9999;
-            transform: translate(-50%, -50%);
-            transition: width 0.3s, height 0.3s, background 0.3s;
-            backdrop-filter: blur(4px); mix-blend-mode: difference;
-        `;
-        document.body.appendChild(cursor);
+    // if (!isMobile && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    //     const cursor = document.createElement('div');
+    //     cursor.style.cssText = `
+    //         position: fixed; width: 24px; height: 24px; border-radius: 50%;
+    //         background: rgba(34, 211, 238, 0.4);
+    //         pointer-events: none; z-index: 9999;
+    //         transform: translate(-50%, -50%);
+    //         transition: width 0.3s, height 0.3s, background 0.3s;
+    //         backdrop-filter: blur(4px); mix-blend-mode: difference;
+    //     `;
+    //     document.body.appendChild(cursor);
 
-        let mx = 0, my = 0, cx = 0, cy = 0;
-        window.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-        (function loop() {
-            cx += (mx - cx) * 0.18;
-            cy += (my - cy) * 0.18;
-            cursor.style.left = cx + 'px';
-            cursor.style.top = cy + 'px';
-            requestAnimationFrame(loop);
-        })();
+    //     let mx = 0, my = 0, cx = 0, cy = 0;
+    //     window.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+    //     (function loop() {
+    //         cx += (mx - cx) * 0.18;
+    //         cy += (my - cy) * 0.18;
+    //         cursor.style.left = cx + 'px';
+    //         cursor.style.top = cy + 'px';
+    //         requestAnimationFrame(loop);
+    //     })();
 
-        document.querySelectorAll('a, button, input, textarea').forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursor.style.width = '56px';
-                cursor.style.height = '56px';
-                cursor.style.background = 'rgba(34, 211, 238, 0.6)';
-            });
-            el.addEventListener('mouseleave', () => {
-                cursor.style.width = '24px';
-                cursor.style.height = '24px';
-                cursor.style.background = 'rgba(34, 211, 238, 0.4)';
-            });
-        });
-    }
+    //     document.querySelectorAll('a, button, input, textarea').forEach(el => {
+    //         el.addEventListener('mouseenter', () => {
+    //             cursor.style.width = '56px';
+    //             cursor.style.height = '56px';
+    //             cursor.style.background = 'rgba(34, 211, 238, 0.6)';
+    //         });
+    //         el.addEventListener('mouseleave', () => {
+    //             cursor.style.width = '24px';
+    //             cursor.style.height = '24px';
+    //             cursor.style.background = 'rgba(34, 211, 238, 0.4)';
+    //         });
+    //     });
+    // }
 
     /* ============================================
        6. Refresh on load

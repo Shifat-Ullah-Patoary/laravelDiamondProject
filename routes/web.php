@@ -11,6 +11,7 @@ use App\Http\Controllers\Auth\IndexController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\TeamController;
+use App\Http\Controllers\Auth\TransportDetailsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -36,6 +37,8 @@ Route::get('/aboutus', [AboutPageSettingController::class, 'about'])
 
 Route::get('/team', [TeamController::class, 'showTeam'])
     ->name('team');
+Route::get('/transportDetails', [TransportDetailsController::class, 'showTransportDetails'])
+    ->name('transportDetails');
 
 // Login routes
 Route::middleware('guest')->group(function () {

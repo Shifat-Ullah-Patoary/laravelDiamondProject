@@ -7,6 +7,33 @@
 @theme {
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
-}
 
+
+/* ============================================
+       DIAMOND GROUP — BLUE BRAND PALETTE
+    ============================================ */
+
+/* Primary blue (sapphire) — for CTAs, links, badges */
+--color-diamond-50: #eff6ff;
+--color-diamond-100: #dbeafe;
+--color-diamond-200: #bfdbfe;
+--color-diamond-300: #93c5fd;
+--color-diamond-400: #60a5fa;
+--color-diamond-500: #3b82f6;
+--color-diamond-600: #2563eb;
+--color-diamond-700: #1d4ed8;
+--color-diamond-800: #1e40af;
+--color-diamond-900: #1e3a8a;
+--color-diamond-950: #0b1229;
+/* deep navy — hero bg */
+
+/* Ice — light blue for badges, typewriter cursor, glow */
+--color-ice-300: #7dd3fc;
+--color-ice-400: #38bdf8;
+--color-ice-500: #0ea5e9;
+
+/* Sapphire — deepest tone, for premium surfaces */
+--color-sapphire-900: #0f172a;
+--color-sapphire-950: #0b1229;
+}
 

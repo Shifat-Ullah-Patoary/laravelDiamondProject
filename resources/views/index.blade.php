@@ -3,10 +3,13 @@
 @section('content')
 
     <section id="home" class="relative isolate overflow-hidden px-6 py-32 text-center text-white sm:py-40">
+ <div class=" absolute inset-0 -z-20">
       <img src="{{ $settings?->image ? asset('storage/' . $settings->image) : 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1500&q=80' }}"
-    alt="" aria-hidden="true"
-    class="hero-bg absolute inset-0 h-full w-full object-cover opacity-0">
-        <div class="absolute inset-0 bg-slate-950/45" aria-hidden="true"></div>
+    alt="Diamond Group transport and logistics"
+            class="h-full w-full object-cover object-center"
+            >
+
+       </div>
         <div class="relative mx-auto max-w-4xl">
 
             <p class="mb-4 text-sm font-semibold uppercase tracking-[0.25em] text-cyan-300">
@@ -62,7 +65,7 @@
                         <p class="mb-6 flex-1 leading-7 text-slate-600">
                             {{ $settings?->transport_description ?? 'Reliable freight logistics, fleet rental services, and nation-wide commercial transportation solutions built on safety and speed.' }}
                         </p>
-                        <a href="{{ route('contracts') }}"
+                        <a href="{{ route('transportDetails') }}"
                             class="rounded-full border border-cyan-700 px-5 py-2 text-sm font-semibold text-cyan-800 transition hover:bg-cyan-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2">Learn
                             more</a>
                     </div>
@@ -143,6 +146,11 @@ window.addEventListener('load', () => {
             heroBg.addEventListener('error', startHeroBg, { once: true });
         }
 
+      // Ken Burns background
+    gsap.fromTo(heroBg,
+        { scale: 1.25, filter: 'blur(8px)' },
+        { scale: 1, filter: 'blur(0px)', duration: 2.2, ease: 'power3.out' }
+    );
         // ---- 1b. Title — char reveal ----
         const splitTitle = new SplitType(heroTitle, { types: 'words,chars' });
         gsap.from(splitTitle.chars, {
@@ -175,7 +183,7 @@ window.addEventListener('load', () => {
             .add(typeBadge, 0.4);
 
         // ---- 1e. Button — clean set → to → pulse ----
-        gsap.set(heroBtn, { opacity: 0, y: 30, scale: 0.85 });
+        // gsap.set(heroBtn, { opacity: 0, y: 00, scale: 0.05 });
         gsap.to(heroBtn, {
             opacity: 1,
             y: 0,

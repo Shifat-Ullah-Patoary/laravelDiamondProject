@@ -12,6 +12,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\TeamController;
 use App\Http\Controllers\Auth\TransportDetailsController;
+use App\Http\Controllers\Auth\TruckDetailsPageSettingController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -92,4 +93,10 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::put('/admin/contract-settings', [ContractSettingController::class, 'update'])
         ->name('admin.contract-settings.update');
+
+    Route::get('/admin/truck-details-settings', [TruckDetailsPageSettingController::class, 'index'])
+        ->name('admin.truckDetails-settings.index');
+
+    Route::put('/admin/truck-details-settings', [TruckDetailsPageSettingController::class, 'update'])
+        ->name('admin.truckDetails-settings.update');
 });

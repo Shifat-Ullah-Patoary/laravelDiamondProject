@@ -2,6 +2,8 @@
 <?php
 
 use App\Http\Controllers\Auth\AboutPageSettingController;
+use App\Http\Controllers\Auth\ConstructionDetailsController;
+use App\Http\Controllers\Auth\ConstructionDetailsPageSettingController;
 use App\Http\Controllers\Auth\ContractController;
 use App\Http\Controllers\Auth\ContractSettingController;
 use App\Http\Controllers\Auth\ContractTableController;
@@ -40,6 +42,8 @@ Route::get('/team', [TeamController::class, 'showTeam'])
     ->name('team');
 Route::get('/transportDetails', [TransportDetailsController::class, 'showTransportDetails'])
     ->name('transportDetails');
+Route::get('/constructionDetails', [ConstructionDetailsController::class, 'showConstructionDetails'])
+    ->name('constructionDetails');
 
 // Login routes
 Route::middleware('guest')->group(function () {
@@ -99,4 +103,10 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::put('/admin/truck-details-settings', [TruckDetailsPageSettingController::class, 'update'])
         ->name('admin.truckDetails-settings.update');
+
+    Route::get('/admin/construction-details-settings', [ConstructionDetailsPageSettingController::class, 'index'])
+        ->name('admin.constructionDetails-settings.index');
+
+    Route::put('/admin/construction-details-settings', [ConstructionDetailsPageSettingController::class, 'update'])
+        ->name('admin.constructionDetails-settings.update');
 });

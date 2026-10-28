@@ -79,7 +79,7 @@
                         <p class="mb-6 flex-1 leading-7 text-slate-600">
                             {{ $settings?->construction_description ?? 'High-grade ready-mix concrete, sand, cement supply, and heavy material delivery tailored for durable infrastructure construction.' }}
                         </p>
-                        <a href="{{ route('contracts') }}"
+                        <a href="{{ route('constructionDetails') }}"
                             class="rounded-full border border-cyan-700 px-5 py-2 text-sm font-semibold text-cyan-800 transition hover:bg-cyan-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2">Learn
                             more</a>
                     </div>

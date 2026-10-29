@@ -14,6 +14,8 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\TeamController;
 use App\Http\Controllers\Auth\TransportDetailsController;
+use App\Http\Controllers\Auth\TravelAndToursDetailsController;
+use App\Http\Controllers\Auth\TravelAndToursPageSettingController;
 use App\Http\Controllers\Auth\TruckDetailsPageSettingController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -44,6 +46,8 @@ Route::get('/transportDetails', [TransportDetailsController::class, 'showTranspo
     ->name('transportDetails');
 Route::get('/constructionDetails', [ConstructionDetailsController::class, 'showConstructionDetails'])
     ->name('constructionDetails');
+Route::get('/travelAndToursDetals', [TravelAndToursDetailsController::class, 'showTravelAndToursDetails'])
+    ->name('travelAndToursDetals');
 
 // Login routes
 Route::middleware('guest')->group(function () {
@@ -109,4 +113,10 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::put('/admin/construction-details-settings', [ConstructionDetailsPageSettingController::class, 'update'])
         ->name('admin.constructionDetails-settings.update');
+
+    Route::get('/admin/travel-details-settings', [TravelAndToursPageSettingController::class, 'index'])
+        ->name('admin.travelDetails-settings.index');
+
+    Route::put('/admin/travel-details-settings', [TravelAndToursPageSettingController::class, 'update'])
+        ->name('admin.travelDetails-settings.update');
 });

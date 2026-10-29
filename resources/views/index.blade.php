@@ -51,7 +51,7 @@
                         <p class="mb-6 flex-1 leading-7 text-slate-600">
                             {{ $settings?->travel_description ?? 'Exceptional travel packages, flight reservations, tour management, and personalized holiday itineraries around the world.' }}
                         </p>
-                        <a href="{{ route('contracts') }}"
+                        <a href="{{ route('travelAndToursDetals') }}"
                             class="rounded-full border border-cyan-700 px-5 py-2 text-sm font-semibold text-cyan-800 transition hover:bg-cyan-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2">Learn
                             more</a>
                     </div>

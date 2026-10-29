@@ -13,80 +13,89 @@
     <div class="min-h-screen lg:flex">
         @auth
             <div id="adminOverlay" class="fixed inset-0 z-30 hidden bg-slate-950/50 lg:hidden"></div>
+            
+            {{-- Sidebar changed to flex flex-col to prevent overlap issues --}}
             <aside id="adminSidebar"
-                class="fixed inset-y-0 left-0 z-40 w-64 -translate-x-full overflow-y-auto bg-slate-950 text-white transition-transform lg:translate-x-0">
-                <a href="{{ route('admin.dashboard') }}"
-                    class="flex h-20 items-center gap-3 border-b border-white/10 px-6 text-lg font-bold">
-                    <span class="grid h-10 w-10 place-items-center rounded-xl bg-cyan-500 text-slate-950">DG</span>
-                    <span>Diamond Admin</span>
-                </a>
-                <p class="px-6 pb-2 pt-7 text-xs font-semibold uppercase tracking-widest text-slate-400">Main menu</p>
-
-                <nav class="space-y-1 px-3">
-
-                    {{-- Dashboard --}}
+                class="fixed inset-y-0 left-0 z-40 flex w-64 -translate-x-full flex-col bg-slate-950 text-white transition-transform lg:translate-x-0">
+                
+                {{-- Logo / Brand Header (Fixed height) --}}
+                <div class="flex-shrink-0">
                     <a href="{{ route('admin.dashboard') }}"
-                        class="flex items-center gap-3 rounded-lg px-4 py-3 transition
-       {{ request()->routeIs('admin.dashboard') ? 'bg-cyan-500/15 font-medium text-cyan-300' : 'text-slate-300 hover:bg-white/10 hover:text-white' }}">
-                        Dashboard
+                        class="flex h-20 items-center gap-3 border-b border-white/10 px-6 text-lg font-bold">
+                        <span class="grid h-10 w-10 place-items-center rounded-xl bg-cyan-500 text-slate-950">DG</span>
+                        <span>Diamond Admin</span>
                     </a>
+                </div>
 
-                    {{-- Home --}}
-                    <a href="{{ route('index') }}"
-                        class="flex items-center gap-3 rounded-lg px-4 py-3 transition
-       {{ request()->routeIs('index') ? 'bg-cyan-500/15 font-medium text-cyan-300' : 'text-slate-300 hover:bg-white/10 hover:text-white' }}">
-                        Home
-                    </a>
+                {{-- Scrollable Nav Menu Area --}}
+                <div class="flex-1 overflow-y-auto py-4">
+                    <p class="px-6 pb-2 text-xs font-semibold uppercase tracking-widest text-slate-400">Main menu</p>
 
-                    {{-- Contract Messages --}}
-                    <a href="{{ route('contractsTable') }}"
-                        class="flex items-center gap-3 rounded-lg px-4 py-3 transition
-       {{ request()->routeIs('contractsTable') ? 'bg-cyan-500/15 font-medium text-cyan-300' : 'text-slate-300 hover:bg-white/10 hover:text-white' }}">
-                        Contract Messages
-                    </a>
+                    <nav class="space-y-1 px-3">
+                        {{-- Dashboard --}}
+                        <a href="{{ route('admin.dashboard') }}"
+                            class="flex items-center gap-3 rounded-lg px-4 py-3 transition {{ request()->routeIs('admin.dashboard') ? 'bg-cyan-500/15 font-medium text-cyan-300' : 'text-slate-300 hover:bg-white/10 hover:text-white' }}">
+                            Dashboard
+                        </a>
 
+                        {{-- Home --}}
+                        <a href="{{ route('index') }}"
+                            class="flex items-center gap-3 rounded-lg px-4 py-3 transition {{ request()->routeIs('index') ? 'bg-cyan-500/15 font-medium text-cyan-300' : 'text-slate-300 hover:bg-white/10 hover:text-white' }}">
+                            Home
+                        </a>
 
-                    <a href="{{ route('admin.home-settings.index') }}"
-                        class="flex items-center gap-3 rounded-lg px-4 py-3 transition
-   {{ request()->routeIs('admin.home-settings.*')
-       ? 'bg-cyan-500/15 font-medium text-cyan-300'
-       : 'text-slate-300 hover:bg-white/10 hover:text-white' }}">
-                        Home Page Settings
-                    </a>
-                    <a href="{{ route('admin.about-settings.index') }}"
-                        class="flex items-center gap-3 rounded-lg px-4 py-3 transition
-   {{ request()->routeIs('admin.about-settings.*')
-       ? 'bg-cyan-500/15 font-medium text-cyan-300'
-       : 'text-slate-300 hover:bg-white/10 hover:text-white' }}">
-                        About Settings
-                    </a>
+                        {{-- Contract Messages --}}
+                        <a href="{{ route('contractsTable') }}"
+                            class="flex items-center gap-3 rounded-lg px-4 py-3 transition {{ request()->routeIs('contractsTable') ? 'bg-cyan-500/15 font-medium text-cyan-300' : 'text-slate-300 hover:bg-white/10 hover:text-white' }}">
+                            Contract Messages
+                        </a>
 
-                    <a href="{{ route('admin.contract-settings.index') }}"
-                        class="flex items-center gap-3 rounded-lg px-4 py-3 transition
-   {{ request()->routeIs('admin.contract-settings.*')
-       ? 'bg-cyan-500/15 font-medium text-cyan-300'
-       : 'text-slate-300 hover:bg-white/10 hover:text-white' }}">
-                        Contract Settings
-                    </a>
-                    <a href="{{ route('admin.truckDetails-settings.index') }}"
-                        class="flex items-center gap-3 rounded-lg px-4 py-3 transition
-   {{ request()->routeIs('admin.truckDetails-settings.*')
-       ? 'bg-cyan-500/15 font-medium text-cyan-300'
-       : 'text-slate-300 hover:bg-white/10 hover:text-white' }}">
-                        Truck Detail Settings
-                    </a>
-                    <a href="{{ route('admin.constructionDetails-settings.index') }}"
-                        class="flex items-center gap-3 rounded-lg px-4 py-3 transition
-   {{ request()->routeIs('admin.constructionDetails-settings.*')
-       ? 'bg-cyan-500/15 font-medium text-cyan-300'
-       : 'text-slate-300 hover:bg-white/10 hover:text-white' }}">
-                        Construction Detail Settings
-                    </a>
+                        {{-- Home Page Settings --}}
+                        <a href="{{ route('admin.home-settings.index') }}"
+                            class="flex items-center gap-3 rounded-lg px-4 py-3 transition {{ request()->routeIs('admin.home-settings.*') ? 'bg-cyan-500/15 font-medium text-cyan-300' : 'text-slate-300 hover:bg-white/10 hover:text-white' }}">
+                            Home Page Settings
+                        </a>
 
+                        {{-- About Settings --}}
+                        <a href="{{ route('admin.about-settings.index') }}"
+                            class="flex items-center gap-3 rounded-lg px-4 py-3 transition {{ request()->routeIs('admin.about-settings.*') ? 'bg-cyan-500/15 font-medium text-cyan-300' : 'text-slate-300 hover:bg-white/10 hover:text-white' }}">
+                            About Settings
+                        </a>
 
-                </nav>
+                        {{-- Contract Settings --}}
+                        <a href="{{ route('admin.contract-settings.index') }}"
+                            class="flex items-center gap-3 rounded-lg px-4 py-3 transition {{ request()->routeIs('admin.contract-settings.*') ? 'bg-cyan-500/15 font-medium text-cyan-300' : 'text-slate-300 hover:bg-white/10 hover:text-white' }}">
+                            Contract Settings
+                        </a>
 
-                <div class="absolute inset-x-0 bottom-0 border-t border-white/10 p-4">
+                        {{-- Truck Detail Settings --}}
+                        <a href="{{ route('admin.truckDetails-settings.index') }}"
+                            class="flex items-center gap-3 rounded-lg px-4 py-3 transition {{ request()->routeIs('admin.truckDetails-settings.*') ? 'bg-cyan-500/15 font-medium text-cyan-300' : 'text-slate-300 hover:bg-white/10 hover:text-white' }}">
+                            Truck Detail Settings
+                        </a>
+
+                        {{-- Construction Detail Settings --}}
+                        <a href="{{ route('admin.constructionDetails-settings.index') }}"
+                            class="flex items-center gap-3 rounded-lg px-4 py-3 transition {{ request()->routeIs('admin.constructionDetails-settings.*') ? 'bg-cyan-500/15 font-medium text-cyan-300' : 'text-slate-300 hover:bg-white/10 hover:text-white' }}">
+                            Construction Detail Settings
+                        </a>
+
+                        {{-- Travel Details Settings --}}
+                        <a href="{{ route('admin.travelDetails-settings.index') }}"
+                            class="flex items-center gap-3 rounded-lg px-4 py-3 transition {{ request()->routeIs('admin.travelDetails-settings.*') ? 'bg-cyan-500/15 font-medium text-cyan-300' : 'text-slate-300 hover:bg-white/10 hover:text-white' }}">
+                            Travel Detail Settings
+                        </a>
+
+                        {{-- Team Settings --}}
+                        {{-- <a href="{{ route('admin.team-settings.index') }}"
+                            class="flex items-center gap-3 rounded-lg px-4 py-3 transition {{ request()->routeIs('admin.team-settings.*') ? 'bg-cyan-500/15 font-medium text-cyan-300' : 'text-slate-300 hover:bg-white/10 hover:text-white' }}">
+                            Team Settings
+                        </a> --}}
+                    </nav>
+                </div>
+
+                {{-- Footer / Logout Section (Fixed at bottom) --}}
+                <div class="flex-shrink-0 border-t border-white/10 p-4">
                     <p class="mb-3 truncate px-2 text-sm text-slate-300">{{ auth()->user()->name }}</p>
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf

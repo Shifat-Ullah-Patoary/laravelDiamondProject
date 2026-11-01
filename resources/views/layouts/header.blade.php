@@ -7,9 +7,7 @@
             <a href="{{ route('team') }}" class="transition hover:text-cyan-300">Team</a>
             <a href="{{ route('contracts') }}" class="transition hover:text-cyan-300">Contact</a>
             @auth
-                @if (auth()->user()->is_admin)
-                    <a href="{{ route('admin.dashboard') }}" class="hidden transition hover:text-cyan-300 sm:inline">Dashboard</a>
-                @endif
+                <a href="{{ route('admin.dashboard') }}" class="transition hover:text-cyan-300">Dashboard</a>
                 <form action="{{ route('logout') }}" method="POST" class="hidden sm:block">
                     @csrf
                     <button type="submit" class="transition hover:text-cyan-300">Log out</button>

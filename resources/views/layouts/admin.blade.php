@@ -87,10 +87,10 @@
                         </a>
 
                         {{-- Team Settings --}}
-                        {{-- <a href="{{ route('admin.team-settings.index') }}"
+                        <a href="{{ route('admin.team-settings.index') }}"
                             class="flex items-center gap-3 rounded-lg px-4 py-3 transition {{ request()->routeIs('admin.team-settings.*') ? 'bg-cyan-500/15 font-medium text-cyan-300' : 'text-slate-300 hover:bg-white/10 hover:text-white' }}">
                             Team Settings
-                        </a> --}}
+                        </a>
                     </nav>
                 </div>
 

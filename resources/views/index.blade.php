@@ -4,7 +4,7 @@
 
     <section id="home" class="relative isolate overflow-hidden px-6 py-32 text-center text-white sm:py-40">
  <div class=" absolute inset-0 -z-20">
-      <img src="{{ $settings?->image ? asset('storage/' . $settings->image) : 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1500&q=80' }}"
+      <img src="{{ $settings?->image ? asset('storage/' . $settings->image) : asset('assets/images/aboutushero.png') }}"
     alt="Diamond Group transport and logistics"
             class="h-full w-full object-cover object-center"
             >

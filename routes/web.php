@@ -13,6 +13,7 @@ use App\Http\Controllers\Auth\IndexController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\TeamController;
+use App\Http\Controllers\Auth\TeamPageSettingController;
 use App\Http\Controllers\Auth\TransportDetailsController;
 use App\Http\Controllers\Auth\TravelAndToursDetailsController;
 use App\Http\Controllers\Auth\TravelAndToursPageSettingController;
@@ -119,4 +120,10 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::put('/admin/travel-details-settings', [TravelAndToursPageSettingController::class, 'update'])
         ->name('admin.travelDetails-settings.update');
+
+    Route::get('/admin/team-settings', [TeamPageSettingController::class, 'index'])
+        ->name('admin.team-settings.index');
+
+    Route::put('/admin/team-settings', [TeamPageSettingController::class, 'update'])
+        ->name('admin.team-settings.update');
 });

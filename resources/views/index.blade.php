@@ -26,7 +26,7 @@
 
             <a href="{{ $settings?->button_link ?: '#divisions' }}"
                 class="inline-flex rounded-lg bg-cyan-500 px-6 py-3 font-semibold text-slate-950 transition hover:bg-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-300 focus:ring-offset-2 focus:ring-offset-slate-900">
-                {{ $settings?->button_text ?: 'Explore our services' }}
+                {{ $settings?->button_text ?: 'Contact Us' }}
             </a>
 
         </div>

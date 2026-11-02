@@ -80,11 +80,11 @@
             <div class="grid items-center gap-12 lg:grid-cols-5 lg:gap-20">
                 <div class="travel-image order-1 lg:col-span-2 {{ $loop->even ? 'lg:order-2' : 'lg:order-1' }}">
                     <div class="relative mx-auto max-w-md">
-                        <div class="travel-frame absolute top-5 -bottom-5 rounded-[2rem] border-2 border-cyan-400/60
+                        <div class="travel-frame absolute 
                                     {{ $loop->even ? 'left-5 -right-5' : '-left-5 right-5' }}"
                              aria-hidden="true"></div>
 
-                        <div class="travel-mask relative aspect-[4/5] w-full overflow-hidden rounded-3xl bg-slate-200 shadow-2xl">
+                        <div class="travel-mask relative aspect-[3/5] w-full overflow-hidden rounded-3xl bg-slate-200 shadow-2xl">
                             <img
                                 src="{{ !empty($travelSection->image) ? asset('storage/' . $travelSection->image) : asset('assets/images/travel.jpg') }}"
                                 alt="{{ $travelSection->title }}"

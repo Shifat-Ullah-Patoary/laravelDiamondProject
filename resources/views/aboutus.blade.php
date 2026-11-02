@@ -7,14 +7,13 @@
 {{-- =====================================================
 1. HERO SECTION
 ===================================================== --}}
-<section class="relative isolate overflow-hidden bg-slate-950 text-white">
+<section id="about-hero" class="relative isolate overflow-hidden bg-slate-950 text-white">
 
-    {{-- Dynamic Background Image --}}
-    <div class="absolute inset-0 -z-20">
+    <div class="absolute inset-0 -z-20 overflow-hidden">
         <img
             src="{{ !empty($setting->hero_bg_image) ? asset('storage/' . $setting->hero_bg_image) : asset('assets/images/aboutushero.png') }}"
             alt="Diamond Group transport and logistics"
-            class="h-full w-full object-cover object-center"
+            class="hero-img absolute inset-x-0 -top-[10%] h-[120%] w-full object-cover object-center"
         >
     </div>
 
@@ -23,40 +22,29 @@
     <div class="relative z-10 mx-auto max-w-6xl px-6 py-24 sm:py-28 lg:py-30">
         <div class="max-w-2xl">
 
-            <div class="mb-5 flex items-center gap-3">
+            <div class="hero-badge mb-5 flex items-center gap-3">
                 <span class="h-1 w-10 rounded-full bg-cyan-400"></span>
                 <p class="text-sm font-bold uppercase tracking-[0.2em] text-cyan-300">
                     {{ $setting->hero_badge ?? 'About Diamond Group' }}
                 </p>
             </div>
 
-            <h1 class="text-red-600 text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
+            <h1 class="hero-title text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
                 {{ $setting->hero_title_part_1 ?? 'Building connections' }}
                 <span class="text-cyan-400">{{ $setting->hero_title_part_2 ?? 'and stronger communities.' }}</span>
             </h1>
 
-            <p class="mt-6 max-w-xl text-base tracking-tight leading-8 text-slate-50 sm:text-lg">
+            <p class="hero-desc mt-6 max-w-xl text-base leading-8 text-slate-50 sm:text-lg">
                 {{ $setting->hero_description ?? 'Diamond Group brings travel, transport, and construction supply services together to help people and businesses move forward.' }}
             </p>
 
-            <div class="mt-9 flex flex-wrap gap-4">
-                <a
-                    href="{{ route('contracts') }}"
-                    class="inline-flex items-center rounded-full border border-white/40 px-7 py-3.5 font-semibold text-white transition hover:border-white hover:text-cyan-200 "
-                    class="inline-flex items-center gap-3 rounded-full bg-cyan-400 px-7 py-3.5 font-bold text-white transition hover:bg-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-300 focus:ring-offset-2 focus:ring-offset-slate-950"
-                >
+            <div class="hero-btns mt-9 flex flex-wrap gap-4">
+                <a href="{{ route('contracts') }}"
+                   class="inline-flex items-center gap-3 rounded-full bg-cyan-400 px-7 py-3.5 font-bold text-slate-950 transition hover:bg-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-300 focus:ring-offset-2 focus:ring-offset-slate-950">
                     Contact Us
                     <span aria-hidden="true">&rarr;</span>
                 </a>
-
-                {{-- <a
-                    href="#our-divisions"
-                    class="inline-flex items-center rounded-full border border-white/40 px-7 py-3.5 font-semibold text-white transition hover:border-white hover:bg-white/10"
-                >
-                    Explore Our Divisions
-                </a> --}}
             </div>
-
         </div>
     </div>
 </section>
@@ -315,52 +303,78 @@
 
 @endsection
 
+@push('head')
+<style>
+    .js-loading #about-hero .hero-img { transform: scale(1.25); filter: blur(8px); }
+    .js-loading #about-hero .hero-badge,
+    .js-loading #about-hero .hero-title,
+    .js-loading #about-hero .hero-desc,
+    .js-loading #about-hero .hero-btns { opacity: 0; }
+</style>
+@endpush
+
 @push('scripts')
 <script>
-window.addEventListener('load', () => {
-    // Gracefully exit for reduced-motion users
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    if (typeof gsap === 'undefined') return;
+document.addEventListener('DOMContentLoaded', () => {
+    const unlock = () => {
+        document.documentElement.classList.remove('js-loading');
+        clearTimeout(window.__jsLoadingTimeout);
+    };
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return unlock();
+    if (typeof gsap === 'undefined') return unlock();
 
     gsap.registerPlugin(ScrollTrigger);
 
-    /* ============================================
-       1. HERO — Cinematic Entrance
-    ============================================ */
-    const hero = document.querySelector('section');
-    const heroBg = hero.querySelector('img');
-    const heroTitle = hero.querySelector('h1');
-    const heroBadge = hero.querySelector('.mb-5.flex.items-center.gap-3');
-    const heroDesc = hero.querySelector('p.mt-6');
-    const heroBtns = hero.querySelector('.mt-9');
+    /* ===== 1. HERO ===== */
+    const hero      = document.querySelector('#about-hero');
+    const heroBg    = hero.querySelector('.hero-img');
+    const heroTitle = hero.querySelector('.hero-title');
+    const heroBadge = hero.querySelector('.hero-badge');
+    const heroDesc  = hero.querySelector('.hero-desc');
+    const heroBtns  = hero.querySelector('.hero-btns');
 
-    // Ken Burns background
-    gsap.fromTo(heroBg,
-        { scale: 1.25, filter: 'blur(8px)' },
-        { scale: 1, filter: 'blur(0px)', duration: 2.2, ease: 'power3.out' }
-    );
+    const startHero = () => {
+        // Background: zoom out + sharpen (never hidden)
+        gsap.set(heroBg, { scale: 1.25, filter: 'blur(8px)' });
+        gsap.to(heroBg, { scale: 1, filter: 'blur(0px)', duration: 2.2, ease: 'power3.out' });
 
-    // Char-by-char title
-    const splitTitle = new SplitType(heroTitle, { types: 'words,chars' });
-    gsap.from(splitTitle.chars, {
-        y: 80, opacity: 0, rotateX: -90,
-        duration: 1, stagger: 0.02, ease: 'back.out(1.7)', delay: 0.3
-    });
+        // Title: char by char
+        if (typeof SplitType !== 'undefined') {
+            const split = new SplitType(heroTitle, { types: 'words,chars' });
+            gsap.set(heroTitle, { opacity: 1 });
+            gsap.from(split.chars, {
+                y: 80, opacity: 0, rotateX: -90,
+                duration: 1, stagger: 0.02, ease: 'back.out(1.7)', delay: 0.3
+            });
+        } else {
+            gsap.fromTo(heroTitle, { y: 45, opacity: 0 }, { y: 0, opacity: 1, duration: 1, delay: 0.3 });
+        }
 
-    // Badge + desc + buttons
-    gsap.timeline({ delay: 0.1 })
-        .from(heroBadge, { y: 20, opacity: 0, duration: 0.8, ease: 'power3.out' })
-        .from(heroDesc,  { y: 30, opacity: 0, duration: 0.8, ease: 'power3.out' }, '-=0.4')
-        .from(heroBtns.children, {
-            y: 30, opacity: 0, scale: 0.9,
-            duration: 0.7, stagger: 0.15, ease: 'back.out(1.7)'
-        }, '-=0.4');
+        // Badge, description, buttons
+        gsap.set(heroBtns, { opacity: 1 });
+        gsap.timeline({ delay: 0.1, defaults: { ease: 'power3.out' } })
+            .fromTo(heroBadge, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 })
+            .fromTo(heroDesc,  { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, '-=0.4')
+            .fromTo(heroBtns.children, { y: 30, opacity: 0, scale: 0.9 },
+                    { y: 0, opacity: 1, scale: 1, duration: 0.7, stagger: 0.15, ease: 'back.out(1.7)' }, '-=0.4');
 
-    // Hero parallax
-    gsap.to(heroBg, {
-        yPercent: 25, ease: 'none',
-        scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true }
-    });
+        // Parallax (image is 120% tall, so no empty edge)
+        gsap.to(heroBg, {
+            yPercent: 7, ease: 'none',
+            scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true }
+        });
+
+        unlock();   // LAST: hidden start states are now applied inline
+    };
+
+    // Wait for the hero image so the animation starts on a loaded picture
+    if (heroBg.complete && heroBg.naturalWidth > 0) {
+        startHero();
+    } else {
+        heroBg.addEventListener('load',  startHero, { once: true });
+        heroBg.addEventListener('error', startHero, { once: true });
+    }
 
     /* ============================================
        2. STORY SECTION
@@ -532,7 +546,7 @@ window.addEventListener('load', () => {
     /* ============================================
        8. Refrech after images load
     ============================================ */
-    ScrollTrigger.refresh();
+     window.addEventListener('load', () => ScrollTrigger.refresh());
 });
 </script>
 @endpush

@@ -91,11 +91,11 @@
                 <div class="service-image order-1 lg:col-span-2 {{ $loop->even ? 'lg:order-2' : 'lg:order-1' }}">
                     <div class="relative mx-auto max-w-md">
 
-                        <div class="service-frame absolute top-5 -bottom-5 rounded-[2rem] border-2 border-cyan-400/60
+                        <div class="service-frame absolute 
                                     {{ $loop->even ? 'left-5 -right-5' : '-left-5 right-5' }}"
                                     aria-hidden="true"></div>
 
-                        <div class="service-mask relative aspect-[4/5] w-full overflow-hidden rounded-3xl bg-slate-200 shadow-2xl">
+                        <div class="service-mask relative aspect-[3/5] w-full overflow-hidden rounded-3xl bg-slate-200 shadow-2xl">
                             <img
                                 src="{{ !empty($serviceSection->image)
                                     ? asset('storage/' . $serviceSection->image)

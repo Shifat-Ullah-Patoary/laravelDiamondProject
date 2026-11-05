@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\ContractController;
 use App\Http\Controllers\Auth\ContractSettingController;
 use App\Http\Controllers\Auth\ContractTableController;
 use App\Http\Controllers\Auth\DashboardController;
+use App\Http\Controllers\Auth\FooterSettingController;
 use App\Http\Controllers\Auth\HomePageSettingController;
 use App\Http\Controllers\Auth\IndexController;
 use App\Http\Controllers\Auth\LoginController;
@@ -90,6 +91,12 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::put('/admin/home-settings', [HomePageSettingController::class, 'update'])
         ->name('admin.home-settings.update');
+
+    Route::get('/admin/footer-settings', [FooterSettingController::class, 'index'])
+        ->name('admin.footer-settings.index');
+
+    Route::put('/admin/footer-settings', [FooterSettingController::class, 'update'])
+        ->name('admin.footer-settings.update');
 
     Route::get('/admin/about-settings', [AboutPageSettingController::class, 'index'])
         ->name('admin.about-settings.index');

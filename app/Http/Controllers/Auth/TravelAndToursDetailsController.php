@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\HomePageSetting;
 use App\Models\TravelAndToursPageSetting;
 use App\Models\TravelAndToursSection;
 use Illuminate\View\View;
@@ -21,6 +22,11 @@ class TravelAndToursDetailsController extends Controller
                 ->map(fn (array $section): TravelAndToursSection => new TravelAndToursSection($section));
         }
 
-        return view('travelAndToursDetails', compact('setting', 'travelSections'));
+        // ← NEW: fetch the shared home settings so the "Other Services" cards
+        //        on the travel page read from the same row the home page uses.
+        $settings = HomePageSetting::query()->first()
+            ?? new HomePageSetting;
+
+        return view('travelAndToursDetails', compact('setting', 'travelSections', 'settings'));
     }
 }

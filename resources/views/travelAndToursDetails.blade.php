@@ -131,6 +131,76 @@
     </section>
 @endforeach
 
+{{-- =====================================================
+     OTHER SERVICES
+===================================================== --}}
+<section class="relative overflow-hidden bg-slate-50 px-6 py-20 sm:py-28">
+    <div class="mx-auto max-w-7xl">
+
+        <div class="mb-12 max-w-2xl">
+            <div class="mb-5 flex items-center gap-3">
+                <span class="h-1 w-10 rounded-full bg-cyan-500"></span>
+                <p class="text-sm font-bold uppercase tracking-[0.18em] text-cyan-700">
+                    Explore More
+                </p>
+            </div>
+            <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
+                Other Services
+            </h2>
+        </div>
+
+        <div class="grid gap-8 md:grid-cols-2">
+
+            {{-- Transport --}}
+            <article class="group relative flex h-full flex-col overflow-hidden rounded-2xl bg-white text-center shadow-sm ring-1 ring-slate-200 transition-shadow duration-300 hover:shadow-xl">
+                <img
+                    src="{{ $settings?->transport_image
+                        ? asset('storage/' . $settings->transport_image)
+                        : asset('assets/images/transport.jpg') }}"
+                    alt="Diamond Transport vehicles"
+                    class="h-56 w-full object-cover"
+                >
+                <div class="flex flex-1 flex-col items-center p-7">
+                    <h3 class="mb-3 text-xl font-bold text-slate-900">
+                        {{ $settings?->transport_title ?? 'Diamond Transport' }}
+                    </h3>
+                    <p class="mb-6 flex-1 leading-7 text-slate-600">
+                        {{ $settings?->transport_description ?? 'Reliable freight logistics, fleet rental services, and nation-wide commercial transportation solutions built on safety and speed.' }}
+                    </p>
+                    <a href="{{ route('transportDetails') }}"
+                       class="rounded-full border border-cyan-700 px-5 py-2 text-sm font-semibold text-cyan-800 transition hover:bg-cyan-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2">
+                        Learn more
+                    </a>
+                </div>
+            </article>
+
+            {{-- Construction --}}
+            <article class="group relative flex h-full flex-col overflow-hidden rounded-2xl bg-white text-center shadow-sm ring-1 ring-slate-200 transition-shadow duration-300 hover:shadow-xl">
+                <img
+                    src="{{ $settings?->construction_image
+                        ? asset('storage/' . $settings->construction_image)
+                        : asset('assets/images/brick.jpg') }}"
+                    alt="Construction materials"
+                    class="h-56 w-full object-cover"
+                >
+                <div class="flex flex-1 flex-col items-center p-7">
+                    <h3 class="mb-3 text-xl font-bold text-slate-900">
+                        {{ $settings?->construction_title ?? 'Brick, Sand & Concrete' }}
+                    </h3>
+                    <p class="mb-6 flex-1 leading-7 text-slate-600">
+                        {{ $settings?->construction_description ?? 'High-grade ready-mix concrete, sand, cement supply, and heavy material delivery tailored for durable infrastructure construction.' }}
+                    </p>
+                    <a href="{{ route('constructionDetails') }}"
+                       class="rounded-full border border-cyan-700 px-5 py-2 text-sm font-semibold text-cyan-800 transition hover:bg-cyan-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2">
+                        Learn more
+                    </a>
+                </div>
+            </article>
+
+        </div>
+    </div>
+</section>
+
 @endsection
 
 @push('scripts')

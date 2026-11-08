@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\HomePageSetting;
 use App\Models\TruckDetailsPageSetting;
 use App\Models\TruckVehicleSection;
 use Illuminate\View\View;
@@ -21,6 +22,9 @@ class TransportDetailsController extends Controller
                 ->map(fn (array $section): TruckVehicleSection => new TruckVehicleSection($section));
         }
 
-        return view('transportDetails', compact('setting', 'vehicleSections'));
+        $settings = HomePageSetting::query()->first()
+            ?? new HomePageSetting;
+
+        return view('transportDetails', compact('setting', 'vehicleSections', 'settings'));
     }
 }

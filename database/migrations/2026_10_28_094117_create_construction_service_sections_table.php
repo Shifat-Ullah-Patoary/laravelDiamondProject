@@ -13,8 +13,14 @@ return new class extends Migration
     {
         Schema::create('construction_service_sections', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('construction_details_page_setting_id')
-                ->constrained()
+            $table->foreignId('construction_details_page_setting_id');
+
+            $table->foreign(
+                'construction_details_page_setting_id',
+                'css_page_setting_fk'
+            )
+                ->references('id')
+                ->on('construction_details_page_settings')
                 ->cascadeOnDelete();
             $table->string('badge')->nullable();
             $table->string('title');

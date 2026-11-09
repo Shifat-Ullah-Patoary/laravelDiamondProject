@@ -13,8 +13,13 @@ return new class extends Migration
     {
         Schema::create('travel_and_tours_sections', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('travel_and_tours_page_setting_id')
-                ->constrained()
+            $table->foreignId('travel_and_tours_page_setting_id');
+            $table->foreign(
+                'travel_and_tours_page_setting_id',
+                'tats_page_setting_fk'
+            )
+                ->references('id')
+                ->on('travel_and_tours_page_settings')
                 ->cascadeOnDelete();
             $table->string('badge')->nullable();
             $table->string('title');
